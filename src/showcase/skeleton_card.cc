@@ -1,0 +1,16 @@
+#include "htpp.ui.hh"
+
+using namespace htpp::attr;
+using namespace htpp::attr_literals;
+
+HT_COMPONENT(skeleton_card) {
+    HT_DIV(class_ = "p-4 w-full max-w-sm") {
+        skeleton::skeleton(os, {.class_ = "h-[200px] w-full rounded-md mb-4"});
+        HT_DIV(class_ = "space-y-2") {
+            skeleton::skeleton(os, {.class_ = "h-5 w-2/3"});
+            skeleton::skeleton(os, {.class_ = "h-4 w-full"});
+            skeleton::skeleton(os, {.class_ = "h-4 w-full"});
+            skeleton::skeleton(os, {.class_ = "h-4 w-3/4"});
+        }
+    }
+}
