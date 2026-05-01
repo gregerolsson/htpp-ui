@@ -64,32 +64,47 @@ struct prefix_entry {
     group_id group;
 };
 
+// Classify the suffix after "border-".
+constexpr group_id classify_border(std::string_view suffix) {
+    if (!suffix.empty()) {
+        char c = suffix[0];
+        // border-{side}(-...) — side-specific width/color utilities.
+        // Use none so t/r/b/l sides don't false-conflict with each other.
+        if ((c == 't' || c == 'r' || c == 'b' || c == 'l')
+                && (suffix.size() == 1 || suffix[1] == '-'))
+            return group_id::none;
+        // border-{digit} = overall border-width (border-0, border-2 ...)
+        if (c >= '0' && c <= '9')
+            return group_id::border_width;
+    }
+    return group_id::border_color;
+}
+
 constexpr group_id classify_utility(std::string_view util) {
     // text-* needs suffix inspection.
-    if (util.starts_with("text-")) {
+    if (util.starts_with("text-"))
         return classify_text_variant(util.substr(5));
-    }
 
-    // Sorted longest-prefix-first so first match wins.
-    constexpr std::array<prefix_entry, 9> table{{
-        {"border-x-", group_id::border_width},
-        {"border-",   group_id::border_color},
-        {"border",    group_id::border_width},  // bare "border"
-        {"rotate-",   group_id::rotate},
-        {"bg-",       group_id::bg_color},
-        {"px-",       group_id::padding_x},
-        {"py-",       group_id::padding_y},
-        {"pt-",       group_id::padding_t},
-        {"mx-",       group_id::margin_x},
+    // border-* needs suffix inspection to split width/side/color.
+    if (util.starts_with("border-x-") || util.starts_with("border-y-"))
+        return group_id::border_width;
+    if (util.starts_with("border-"))
+        return classify_border(util.substr(7));
+    if (util == "border")
+        return group_id::border_width;
+
+    constexpr std::array<prefix_entry, 6> table{{
+        {"rotate-", group_id::rotate},
+        {"bg-",     group_id::bg_color},
+        {"px-",     group_id::padding_x},
+        {"py-",     group_id::padding_y},
+        {"pt-",     group_id::padding_t},
+        {"mx-",     group_id::margin_x},
     }};
 
     for (const auto& e : table) {
-        if (util.starts_with(e.prefix)) {
-            // Bare tokens (no trailing '-') require exact match.
-            if (e.prefix.back() != '-' && util.size() != e.prefix.size())
-                continue;
+        if (util.starts_with(e.prefix))
             return e.group;
-        }
     }
     return group_id::none;
 }

@@ -1,3 +1,5 @@
 node_modules
 compile_commands.json
 .cache
+build
+.DS_Store
