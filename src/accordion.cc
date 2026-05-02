@@ -1,12 +1,9 @@
-#include "htpp.hh"
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
 
 namespace accordion {
-    inline constexpr std::string_view accordion_base =
-        "group border-b last:border-b-0 "
-        "[&[open]>summary>svg]:rotate-180";
 
     inline constexpr std::string_view item_base =
         "group border-b last:border-b-0 "
@@ -23,14 +20,18 @@ namespace accordion {
     HT_COMPONENT(accordion, const props &props) {
         HT_DIV(
             attr_if(!props.id.empty(), id = props.id),
-            class_ = ui::merge(accordion_base, props.class_)
+            class_ = ui::merge(props.class_)
         ) {
             HT_SLOT();
         }
     }
 
     HT_COMPONENT(item, const item_props &props) {
-        HT_DETAILS(attr_if(!props.id.empty(), id = props.id)) {
+        HT_DETAILS(
+            attr_if(!props.id.empty(), id = props.id),
+            class_ = ui::merge(item_base, props.class_),
+            name = "accordion"
+        ) {
             HT_SLOT();
         }
     }
@@ -41,14 +42,17 @@ namespace accordion {
             class_ = ui::merge(trigger_base, props.class_)
         ) {
             HT_SLOT();
-            HT_SPAN() { os << "Icon"; }
+            icon::icon(os, {
+                .class_ = "size-4 shrink-0 translate-y-0.5 transition-transform duration-200 text-muted-foreground pointer-events-none",
+                .glyph = glyph::chevron_down,
+            });
         }
     }
 
     HT_COMPONENT(content, const content_props &props) {
         HT_DIV(
             attr_if(!props.id.empty(), id = props.id),
-            class_ = ui::merge(trigger_base, props.class_)
+            class_ = ui::merge("pt-0 pb-4 text-sm overflow-hidden", props.class_)
         ) {
             HT_SLOT();
         }

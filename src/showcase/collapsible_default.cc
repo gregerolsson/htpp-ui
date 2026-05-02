@@ -1,3 +1,4 @@
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -12,7 +13,7 @@ HT_COMPONENT(collapsible_default) {
             }
             HT_USE(collapsible::trigger, {}) {
                 HT_USE(button::button, {.class_ = "size-8", .variant = button::ghost, .size = button::icon}) {
-                    HT_SPAN() { os << "icon::chevrons_up_down"; }
+                    icon::icon(os, {.glyph = glyph::chevrons_up_down});
                     HT_SPAN(class_ = "sr-only") { os << "Toggle"; }
                 }
             }

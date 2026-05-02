@@ -1,3 +1,4 @@
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -13,7 +14,10 @@ HT_COMPONENT(breadcrumb_custom_separator) {
             }
             HT_USE(breadcrumb::item, {}) {
                 HT_USE(breadcrumb::separator, {.use_custom = true}) {
-                    HT_SPAN() { os << "icon::slash"; }
+                    icon::icon(os, {
+                        .class_ = "size-3.5 text-muted-foreground",
+                        .glyph = glyph::slash
+                    });
                 }
                 HT_USE(breadcrumb::link, {.href = "/products"}) {
                     os << "Products";
@@ -21,7 +25,10 @@ HT_COMPONENT(breadcrumb_custom_separator) {
             }
             HT_USE(breadcrumb::item, {}) {
                 HT_USE(breadcrumb::separator, {.use_custom = true}) {
-                    HT_SPAN() { os << "icon::slash"; }
+                    icon::icon(os, {
+                        .class_ = "size-3.5 text-red-500",
+                        .glyph = glyph::slash
+                    });
                 }
                 HT_USE(breadcrumb::page, {.current = true}) {
                     os << "Category";

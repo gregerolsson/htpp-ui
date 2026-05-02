@@ -8,7 +8,12 @@ HT_COMPONENT(card_with_image) {
         HT_USE(card::card, {}) {
             HT_DIV(class_ = "overflow-hidden w-full rounded-t-lg") {
                 HT_USE(aspectratio::aspectratio, {.id = "top-media-aspect", .class_ = "h-full w-full", .ratio = aspectratio::video}) {
-                    HT_IMG(src = "/assets/img/card_placeholder.jpeg", alt = "Card image", loading = "lazy", class_ = "h-full w-full object-cover");
+                    HT_IMG(
+                        src = "https://github.com/templui/templui/blob/main/assets/img/card_placeholder.jpeg?raw=true",
+                        alt = "Card image",
+                        loading = "lazy",
+                        class_ = "h-full w-full object-cover"
+                    );
                 }
             }
             HT_USE(card::header, {}) {

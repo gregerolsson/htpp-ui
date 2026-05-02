@@ -1,4 +1,3 @@
-#include "htpp.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -20,9 +19,9 @@ namespace alert {
     constexpr std::string_view variant_classes(variant v) {
         switch (v) {
             case variant::normal:
-                return "bg-white text-slate-900 border-slate-200";
+                return "bg-card text-card-foreground";
             case variant::destructive:
-                return "bg-slate-50 text-slate-700 border-slate-100";
+                return "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90";
         }
         return "";
     }
@@ -44,7 +43,7 @@ namespace alert {
     HT_COMPONENT(title, const title_props &props) {
         HT_H5(
             attr_if(!props.id.empty(), id = props.id),
-            class_ = ui::merge(alert_base, props.class_),
+            class_ = ui::merge(title_base, props.class_),
             "data-slot"_a = "alert-title"
         ) {
             HT_SLOT();
@@ -54,7 +53,7 @@ namespace alert {
     HT_COMPONENT(description, const description_props &props) {
         HT_DIV(
             attr_if(!props.id.empty(), id = props.id),
-            class_ = ui::merge(alert_base, props.class_),
+            class_ = ui::merge(description_base, props.class_),
             "data-slot"_a = "alert-description"
         ) {
             HT_SLOT();

@@ -1,3 +1,4 @@
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -22,20 +23,20 @@ HT_COMPONENT(dropdown_default) {
                 HT_USE(dropdown::sub, {}) {
                     HT_USE(dropdown::sub_trigger, {}) {
                         HT_SPAN(class_ = "flex items-center") {
-                            HT_SPAN() { os << "icon::users"; }
+                            icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::users});
                             os << "Invite users";
                         }
                     }
                     HT_USE(dropdown::sub_content, {}) {
                         HT_USE(dropdown::item, {}) {
                             HT_SPAN(class_ = "flex items-center") {
-                                HT_SPAN() { os << "icon::mail"; }
+                                icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::mail});
                                 os << "Email";
                             }
                         }
                         HT_USE(dropdown::item, {}) {
                             HT_SPAN(class_ = "flex items-center") {
-                                HT_SPAN() { os << "icon::message_square"; }
+                                icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::message_square});
                                 os << "Message";
                             }
                         }
@@ -55,26 +56,26 @@ HT_COMPONENT(dropdown_default) {
             dropdown::separator(os, {});
             HT_USE(dropdown::item, {.href = "https://github.com", .target = "_blank"}) {
                 HT_SPAN(class_ = "flex items-center") {
-                    HT_SPAN() { os << "icon::github"; }
+                    icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::git_graph});
                     os << "GitHub";
                 }
             }
             HT_USE(dropdown::item, {}) {
                 HT_SPAN(class_ = "flex items-center") {
-                    HT_SPAN() { os << "icon::life_buoy"; }
+                    icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::life_buoy});
                     os << "Support";
                 }
             }
             HT_USE(dropdown::item, {.disabled = true}) {
                 HT_SPAN(class_ = "flex items-center") {
-                    HT_SPAN() { os << "icon::code"; }
+                    icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::code});
                     os << "API";
                 }
             }
             dropdown::separator(os, {});
             HT_USE(dropdown::item, {}) {
                 HT_SPAN(class_ = "flex items-center") {
-                    HT_SPAN() { os << "icon::log_out"; }
+                    icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::log_out});
                     os << "Log out";
                 }
                 HT_USE(dropdown::shortcut, {}) {

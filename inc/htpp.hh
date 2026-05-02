@@ -1,5 +1,5 @@
 #pragma once
-// htpp.hpp — single-header C++ HTML DSL
+// htpp.hh — single-header C++ HTML DSL
 // RAII tags + macro-based nesting, writes directly to std::ostream.
 // Requires C++20 (fixed_string non-type template parameters, __VA_OPT__).
 //
@@ -22,7 +22,7 @@
 #include <array>
 #include <cstddef>
 #include <ostream>
-#include <sstream>
+#include <sstream> // IWYU pragma: keep
 #include <stdexcept>
 #include <string_view>
 #include <utility>

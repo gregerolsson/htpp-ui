@@ -683,6 +683,15 @@ namespace dialog {
     HT_COMPONENT_DECL(description, const description_props& props);
 }
 
+namespace icon {
+    struct props {
+        std::string_view class_;
+        const char* glyph;
+    };
+
+    HT_COMPONENT_DECL(icon, const props &props);
+}
+
 namespace popover {
     enum placement {
         top,

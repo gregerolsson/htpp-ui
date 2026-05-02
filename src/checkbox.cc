@@ -1,4 +1,3 @@
-#include "htpp.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -21,7 +20,7 @@ namespace checkbox {
                 attr_if(props.group_parent, "data-tui-checkbox-parent"_a = "true"),
                 type = "checkbox",
                 class_ = ui::merge(
-                    "peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs "
+                    "peer size-4 shrink-0 rounded-lg border border-input shadow-xs "
                     "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:border-ring "
                     "disabled:cursor-not-allowed disabled:opacity-50 "
                     "checked:bg-primary checked:text-primary-foreground checked:border-primary "

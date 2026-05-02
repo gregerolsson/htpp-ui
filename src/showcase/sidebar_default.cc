@@ -1,3 +1,4 @@
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -10,7 +11,7 @@ HT_COMPONENT(sidebar_default) {
                 HT_USE(sidebar::menu, {}) {
                     HT_USE(sidebar::menu_item, {}) {
                         HT_USE(sidebar::menu_button, {.href = "#"}) {
-                            HT_SPAN() { os << "icon::layout_panel_left"; }
+                            icon::icon(os, {.glyph = glyph::layout_panel_left});
                             HT_SPAN(class_ = "font-semibold") {
                                 os << "Acme Inc";
                             }
@@ -26,13 +27,13 @@ HT_COMPONENT(sidebar_default) {
                     HT_USE(sidebar::menu, {}) {
                         HT_USE(sidebar::menu_item, {}) {
                             HT_USE(sidebar::menu_button, {.href = "#", .tooltip = "Home"}) {
-                                HT_SPAN() { os << "icon::house"; }
+                                icon::icon(os, {.glyph = glyph::house});
                                 HT_SPAN() { os << "Home"; }
                             }
                         }
                         HT_USE(sidebar::menu_item, {}) {
                             HT_USE(sidebar::menu_button, {.href = "#", .tooltip = "Inbox"}) {
-                                HT_SPAN() { os << "icon::inbox"; }
+                                icon::icon(os, {.glyph = glyph::inbox});
                                 HT_SPAN() { os << "Inbox"; }
                                 HT_USE(sidebar::menu_badge, {}) {
                                     os << "3";
@@ -43,7 +44,7 @@ HT_COMPONENT(sidebar_default) {
                             HT_USE(collapsible::collapsible, {.class_ = "group/collapsible w-full", .open = true}) {
                                 HT_USE(collapsible::trigger, {}) {
                                     HT_USE(sidebar::menu_button, {.tooltip = "Documents"}) {
-                                        HT_SPAN() { os << "icon::file_text"; }
+                                        icon::icon(os, {.glyph = glyph::file_text});
                                         HT_SPAN() { os << "Documents"; }
                                         HT_SPAN(class_ = "ml-auto size-4 transition-transform group-data-[tui-collapsible-state=open]/collapsible:rotate-90") {
                                             os << "icon::chevron_right";
@@ -81,7 +82,7 @@ HT_COMPONENT(sidebar_default) {
                     HT_USE(sidebar::menu, {}) {
                         HT_USE(sidebar::menu_item, {}) {
                             HT_USE(sidebar::menu_button, {.href = "#", .tooltip = "Project Alpha"}) {
-                                HT_SPAN() { os << "icon::folder"; }
+                                icon::icon(os, {.glyph = glyph::folder});
                                 HT_SPAN() { os << "Project Alpha"; }
                                 HT_USE(sidebar::menu_badge, {}) {
                                     os << "12";
@@ -120,7 +121,7 @@ HT_COMPONENT(sidebar_default) {
                     HT_USE(sidebar::menu, {}) {
                         HT_USE(sidebar::menu_item, {}) {
                             HT_USE(sidebar::menu_button, {.href = "#", .tooltip = "Team"}) {
-                                HT_SPAN() { os << "icon::users"; }
+                                icon::icon(os, {.glyph = glyph::users});
                                 HT_SPAN() { os << "Team"; }
                             }
                         }
@@ -128,10 +129,10 @@ HT_COMPONENT(sidebar_default) {
                             HT_USE(collapsible::collapsible, {.class_ = "group/collapsible w-full", .open = false}) {
                                 HT_USE(collapsible::trigger, {}) {
                                     HT_USE(sidebar::menu_button, {.tooltip = "Settings"}) {
-                                        HT_SPAN() { os << "icon::settings"; }
+                                        icon::icon(os, {.glyph = glyph::settings});
                                         HT_SPAN() { os << "Settings"; }
                                         HT_SPAN(class_ = "ml-auto size-4 transition-transform group-data-[tui-collapsible-state=open]/collapsible:rotate-90") {
-                                            os << "icon::chevron_right";
+                                            icon::icon(os, {.glyph = glyph::chevron_right});
                                         }
                                     }
                                 }
@@ -176,7 +177,9 @@ HT_COMPONENT(sidebar_default) {
                                             os << "john@example.com";
                                         }
                                     }
-                                    HT_SPAN(class_ = "ml-auto size-4") { os << "icon::chevrons_up_down"; }
+                                    HT_SPAN(class_ = "ml-auto size-4") {
+                                        icon::icon(os, {.glyph = glyph::chevrons_up_down});
+                                    }
                                 }
                             }
                             HT_USE(dropdown::content, {.class_ = "w-56", .placement = popover::top_start}) {
@@ -186,20 +189,20 @@ HT_COMPONENT(sidebar_default) {
                                 dropdown::separator(os, {});
                                 HT_USE(dropdown::item, {}) {
                                     HT_SPAN(class_ = "flex items-center") {
-                                        HT_SPAN(class_ = "size-4 mr-2") { os << "icon::user"; }
+                                        icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::user});
                                         os << "Profile";
                                     }
                                 }
                                 HT_USE(dropdown::item, {}) {
                                     HT_SPAN(class_ = "flex items-center") {
-                                        HT_SPAN(class_ = "size-4 mr-2") { os << "icon::settings"; }
+                                        icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::settings});
                                         os << "Settings";
                                     }
                                 }
                                 dropdown::separator(os, {});
                                 HT_USE(dropdown::item, {}) {
                                     HT_SPAN(class_ = "flex items-center") {
-                                        HT_SPAN(class_ = "size-4 mr-2") { os << "icon::log_out"; }
+                                        icon::icon(os, {.class_ = "size-4 mr-2", .glyph = glyph::log_out});
                                         os << "Log out";
                                     }
                                 }

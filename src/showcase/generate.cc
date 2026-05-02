@@ -19,6 +19,7 @@ HT_COMPONENT(layout, const layout_props &props) {
             HT_LINK(rel = "stylesheet", href = "./index.css");
         }
         HT_BODY() { HT_SLOT(); }
+        HT_SCRIPT(src="./index.js") { }
     }
 }
 

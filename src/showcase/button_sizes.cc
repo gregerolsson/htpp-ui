@@ -1,3 +1,4 @@
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -15,7 +16,7 @@ HT_COMPONENT(button_sizes) {
             os << "Large";
         }
         HT_USE(button::button, {.variant = button::secondary, .size = button::icon}) {
-            HT_SPAN() { os << "icon::chevron_right"; }
+            icon::icon(os, {.glyph = glyph::chevron_right});
         }
     }
 }

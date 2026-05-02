@@ -1,4 +1,4 @@
-#include "htpp.hh"
+#include "htpp.ico.hh"
 #include "htpp.ui.hh"
 
 using namespace htpp::attr;
@@ -52,6 +52,12 @@ namespace breadcrumb {
         ) {
             if (props.use_custom) {
                 HT_SLOT();
+            }
+            else {
+                icon::icon(os, {
+                    .class_ = "size-3.5 text-muted-foreground",
+                    .glyph = glyph::chevron_right
+                });
             }
         }
     }
